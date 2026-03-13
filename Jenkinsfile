@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/oumaimaelhalimi/Devops-mini-project.git'
+                checkout scm
             }
         }
         stage('Build Docker Images') {
