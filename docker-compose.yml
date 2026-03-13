@@ -22,7 +22,7 @@ services:
     restart: unless-stopped
     env_file: ./.env
     ports:
-      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+      - "8082:8080"
     environment:
       - DB_HOST=mysqldb
       - DB_USER=$MYSQLDB_USER
@@ -42,7 +42,7 @@ services:
       args:
         - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
     ports:
-      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
+      - "3001:80"
     networks:
       - frontend  
 
