@@ -3,7 +3,7 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
+        stage('Checkout') {
             steps {
                 checkout scm
             }
@@ -11,11 +11,12 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                sh 'docker-compose build'
+                sh 'docker build -t bezkoder-api ./bezkoder-api'
+                sh 'docker build -t bezkoder-ui ./bezkoder-ui'
             }
         }
 
-        stage('Deploy Containers') {
+        stage('Deploy') {
             steps {
                 sh 'docker-compose up -d'
             }
