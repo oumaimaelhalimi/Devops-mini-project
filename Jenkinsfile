@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_HOST = 'tcp://host.docker.internal:2375'
+    }
+
     stages {
 
         stage('Checkout') {
@@ -23,4 +27,3 @@ pipeline {
         }
 
     }
-}
