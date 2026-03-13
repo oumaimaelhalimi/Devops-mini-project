@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/oumaima-elhalimi/Devops-mini-project.git'
+                checkout scm
             }
         }
 
