@@ -6,7 +6,6 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout') {
             steps {
                 checkout scm
@@ -25,6 +24,5 @@ pipeline {
                 sh 'docker-compose up -d'
             }
         }
-
     }
 }
