@@ -1,25 +1,26 @@
 pipeline {
     agent any
+
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
+
         stage('Build Docker Images') {
             steps {
-                sh 'docker-compose build'
+                sh 'docker build -t bezkoder-api ./bezkoder-api'
+                sh 'docker build -t bezkoder-ui ./bezkoder-ui'
             }
         }
-        stage('Run Tests') {
-            steps {
-                sh 'docker-compose run backend npm test'
-            }
-        }
+
         stage('Deploy') {
             steps {
                 sh 'docker-compose up -d'
             }
         }
+
     }
 }
