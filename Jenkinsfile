@@ -48,4 +48,15 @@ pipeline {
             }
         }
     }
+
+    post {
+        success {
+            slackSend channel: '#tous-devops-mini-project',
+            message: "✅ Build SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+        }
+        failure {
+            slackSend channel: '#tous-devops-mini-project',
+            message: "❌ Build FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+        }
+    }
 }
