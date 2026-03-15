@@ -29,7 +29,7 @@ pipeline {
 
         stage('Quality Gate') {
             steps {
-                timeout(time: 5, unit: 'MINUTES') {
+                timeout(time: 7, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
             }
@@ -46,6 +46,17 @@ pipeline {
             steps {
                 sh 'docker-compose up -d'
             }
+        }
+    }
+
+    post {
+        success {
+            slackSend channel: '#tous-devops-mini-project',
+            message: "✅ Build SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+        }
+        failure {
+            slackSend channel: '#tous-devops-mini-project',
+            message: "❌ Build FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}"
         }
     }
 }
